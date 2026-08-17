@@ -1,0 +1,40 @@
+# ==========================================================
+# Project metadata (PEP 621)
+# ==========================================================
+
+[project]
+name = "hgnc_lookup"
+version = "0.1.0"
+description = "HGNC gene information web application"
+
+# Dependencies are loaded dynamically from requirements.txt.
+dynamic = ["dependencies"]
+
+# Project licence.
+license = {file = "LICENSE"}
+
+# Project authors.
+authors = [
+    {name = "Sachin Kannangara Arachchige", email = "sachin.kannangaraarachchige@gosh.nhs.uk"},
+]
+
+# Long project description.
+readme = "README.md"
+
+# Minimum supported Python version.
+requires-python = ">=3.12"
+
+# ==========================================================
+# Build system configuration
+# ==========================================================
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+# ==========================================================
+# Dynamic dependencies
+# ==========================================================
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
