@@ -25,9 +25,9 @@ def validate_search_query(query: str) -> str:
     hgnc_pattern = r"^HGNC:\d+$"
     symbol_pattern = r"^[A-Za-z0-9-]+$"
 
-    if re.match(hgnc_pattern, query):
+    if re.match(hgnc_pattern, query, re.IGNORECASE):
         return query
-    if re.match(symbol_pattern, query):
+    if re.match(symbol_pattern, query, re.IGNORECASE):
         return query
     logger.warning("User entered invalid input: %s",query)
     raise UserInputError(
@@ -45,6 +45,8 @@ def validate_search_query(query: str) -> str:
 
 def find_by_symbol(symbol):
 
+    symbol = validate_search_query(symbol)
+
     dataset = load_dataset()
 
     for gene in dataset:
@@ -55,6 +57,8 @@ def find_by_symbol(symbol):
 
 
 def find_by_hgnc_id(hgnc_id):
+
+    hgnc_id = validate_search_query(hgnc_id)
 
     dataset = load_dataset()
 
