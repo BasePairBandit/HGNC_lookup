@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/png" href="{% static 'hgnc_lookup_app/images/DNA_flavicon.png' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="{% static 'hgnc_lookup_app/css/main.css' %}" rel="stylesheet" />
+    <video autoplay muted loop id="bg-video">
+    <source src="{% static 'hgnc_lookup_app/images/DNA_animation.mp4' %}">
+</video>
+</head>
+<body>
+
+<div class="s131">
+    <form method="get">
+        <div class="inner-form">
+            <div class="input-field first-wrap">
+                <input
+                    id="search"
+                    type="text"
+                    name="query"
+                    placeholder="BRCA2 or HGNC:1101"
+                >
+            </div>
+            <div class="input-field third-wrap">
+                <button class="btn-search" type="submit">
+                    SEARCH
+                </button>
+            </div>
+        </div>
+    </form>
+<div class="results">
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
+
+{% if gene %}
+    <h2>{{ gene.gene_symbol }}</h2>
+
+    <p><strong>HGNC ID:</strong> {{ gene.hgnc_id }}</p>
+    <p><strong>Symbol:</strong> {{ gene.gene_symbol }}</p>
+    <p><strong>Name:</strong> {{ gene.gene_name }}</p>
+    <p><strong>Previous symbols:</strong> {{ gene.prev_symbol }}</p>
+    <p><strong>Previous names:</strong> {{ gene.prev_name }}</p>
+    <p><strong>Aliases:</strong> {{ gene.alias_symbol }}</p>
+    <p><strong>mane_select:</strong> {{ gene.mane_select }}</p>
+{% endif %}
+</div>
+</div>
+
+<script src="{% static 'hgnc_lookup_app/js/extention/choices.js' %}"></script>
+<script>
+    const choices = new Choices('[data-trigger]',
+    {
+    searchEnabled: false
+    });
+
+</script>
+
+</body>
+</html>
