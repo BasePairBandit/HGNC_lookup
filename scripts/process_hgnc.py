@@ -39,7 +39,7 @@ logger = logging.getLogger("hgnc_lookup")
 
 def split_field(value: str) -> list:
     """
-    Convert pipe-delimited HGNC fields into a list.
+    Convert pipe-delimited HGNC fields into a list. Inspecting original dataset showed that some cells have information seperated by a pipe.
     """
 
     if not value:
@@ -50,7 +50,7 @@ def split_field(value: str) -> list:
 
 def build_gene_record(row: dict) -> dict:
     """
-    Build a lightweight gene dictionary.
+    Build a lightweight gene dictionary by only extracting the fields specified in the assignment.
     """
 
     return {
@@ -59,19 +59,18 @@ def build_gene_record(row: dict) -> dict:
         "gene_name": row.get("name", ""),
 
         "previous_symbols":
-            split_field(row.get("prev_symbol", "")),
+            split_field(row.get("previous_symbols", "")),
 
         "previous_names":
-            split_field(row.get("prev_name", "")),
+            split_field(row.get("previous_names", "")),
 
         "aliases":
-            split_field(row.get("alias_symbol", "")),
+            split_field(row.get("aliases", "")),
 
         "mane_select":
             split_field(row.get("mane_select", "")),
 
-        # Optional field as not found in the dataset downloaded.
-        "mane_plus_clinical":
+        "mane_plus_clinical": #Empty column when inspecting but included as assignment specified.
             split_field(row.get("mane_plus_clinical", ""))
     }
 
