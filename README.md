@@ -45,6 +45,9 @@ pytest
 # Generate coverage report
 pytest --cov=. --cov-report=html
 
+# Generate lightweight dataset (run from root)
+python -m HGNC_lookup.scripts.process_hgnc
+
 # Project layout
 ├── data
 │   ├── hgnc_complete_set.tsv
