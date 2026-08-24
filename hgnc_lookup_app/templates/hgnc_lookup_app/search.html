@@ -9,12 +9,11 @@
     <meta name="author" content="colorlib.com">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link href="{% static 'hgnc_lookup_app/css/main.css' %}" rel="stylesheet" />
+</head>
+<body>
     <video autoplay muted loop id="bg-video">
     <source src="{% static 'hgnc_lookup_app/images/DNA_animation.mp4' %}">
 </video>
-</head>
-<body>
-
 <div class="s131">
     <form method="get">
         <div class="inner-form">
@@ -44,13 +43,42 @@
     <p><strong>HGNC ID:</strong> {{ gene.hgnc_id }}</p>
     <p><strong>Symbol:</strong> {{ gene.gene_symbol }}</p>
     <p><strong>Name:</strong> {{ gene.gene_name }}</p>
-    <p><strong>Previous symbols:</strong> {{ gene.prev_symbol }}</p>
-    <p><strong>Previous names:</strong> {{ gene.prev_name }}</p>
-    <p><strong>Aliases:</strong> {{ gene.alias_symbol }}</p>
-    <p><strong>mane_select:</strong> {{ gene.mane_select }}</p>
+    <p><strong>Previous symbols:</strong> 
+    {% if gene.previous_symbols %} 
+        {{ gene.previous_symbols }} 
+    {% else %} 
+        <span class="tag-none"> None</span> 
+    {% endif %}
+    </p>
+    <p><strong>Previous names:</strong> 
+    {% if gene.previous_names %}
+        {{ gene.previous_names }}
+    {% else %}
+        <span class="tag-none"> None</span> 
+    {% endif %}
+    </p>
+    <p><strong>Aliases:</strong> 
+    {% if gene.aliases %}
+        {{ gene.aliases }}
+    {% else %}
+        <span class="tag-none"> None</span>
+    {% endif %}
+    </p>
+    <p><strong>mane_select:</strong> 
+    {% if gene.mane_select %}    
+        {{ gene.mane_select }}
+    {% else %}
+        <span class="tag-none"> None</span>
+    {% endif %}
+    </p>
 {% endif %}
 </div>
-</div>
+<a
+    class ="hgnc-source"
+    href="https://www.genenames.org/download/"
+    target="_blank"
+    rel="noopener noreferrer"
+> HGNC download source</a>
 
 <script src="{% static 'hgnc_lookup_app/js/extention/choices.js' %}"></script>
 <script>
