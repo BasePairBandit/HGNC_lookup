@@ -10,18 +10,18 @@ User enters gene symbol/HGNC ID and the web app returns the following informatio
 -	Previous gene names
 -	Gene aliases/synonyms
 -	MANE Select transcript
--	MANE Plus Clinical transcript(s)
+-	MANE Plus Clinical transcript(s) - if available
 
 # Data source
 
 Original data downloaded from : https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt.
-Date downloaded :
+Date downloaded : 
 
-A lightweight dataset is created to reflects the columns mentioned above and is used by the web application to provide the user with the information.
+A lightweight dataset (see instructions below) is created to reflect the columns mentioned above and is used by the web application to provide the user with the information.
 
 # Project architecture
 
-The application loads a TSV file into memory once during application startup the lightweight data set is created from this and performs all gene searches against the lightweight dataset in-memory.
+The application loads a .txt file into memory once during application startup and the lightweight data set is created from this and performs all gene searches against the lightweight dataset in-memory.
 
 # Installation
 
@@ -38,6 +38,19 @@ pip install -e .
 
 # Run application
 python manage.py runserver
+
+# Stopping the application
+
+Stop the development server with:
+
+```text
+Ctrl+C
+```
+
+Deactivate the Conda environment when finished:
+
+conda deactivate
+---
 
 # Run tests
 pytest
@@ -99,20 +112,7 @@ python -m HGNC_lookup.scripts.process_hgnc
 
 Logging is configured centrally within:
 
-project/settings.py
-
-# Stopping the application
-
-Stop the development server with:
-
-```text
-Ctrl+C
-```
-
-Deactivate the Conda environment when finished:
-
-conda deactivate
----
+hgnc_lookup/settings.py
 
 # Purpose 
 
