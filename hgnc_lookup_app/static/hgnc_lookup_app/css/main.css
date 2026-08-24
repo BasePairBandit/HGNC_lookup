@@ -1040,6 +1040,8 @@ button {
 
 /*# sourceMappingURL=Searchs_131.css.map */
 
+/*#My additions */
+
 .results {
     width: 900px;
     margin-top: 20px;
@@ -1054,4 +1056,27 @@ button {
     height: 100%;
     object-fit: cover;
     z-index: -1;
+}
+
+.tag-none {
+    background: red !important;
+    color: white !important;
+    padding: 3px 9px;
+    border: 2px solid rgb(241, 102, 38);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.hgnc-source {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    color: rgb(37, 33, 238);
+    font-size: 14px;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.hgnc-source:hover {
+    text-decoration: underline;
 }
