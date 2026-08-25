@@ -3,9 +3,9 @@ import re
 import logging
 logger = logging.getLogger("hgnc_lookup")
 
-# ------------------------------------------------------------------
-# Validate user input
-# ------------------------------------------------------------------
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                    # Validate user input
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 class UserInputError(Exception):
     """
     Raised when a gene symbol/hgnc_ID is invalid.
@@ -22,7 +22,7 @@ def validate_search_query(query: str) -> str:
         raise UserInputError(
             "Invalid input, please enter a valid gene/HGNC_ID."
         )
-    hgnc_pattern = r"^HGNC:\d+$"
+    hgnc_pattern = r"^HGNC:\d+$" #Using RE to establish pattern
     symbol_pattern = r"^[A-Za-z0-9-]+$"
 
     if re.match(hgnc_pattern, query, re.IGNORECASE):
@@ -34,16 +34,14 @@ def validate_search_query(query: str) -> str:
         "Please enter a vald HGNC ID or gene symbol"
     )
     
-    
-
-
-
-
-# ------------------------------------------------------------------
-# Search using user input
-# ------------------------------------------------------------------
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                    # Search using user input
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 def find_by_symbol(symbol):
+    """
+    Loop through gene_symbol keys in json and find a match.
+    """
 
     symbol = validate_search_query(symbol)
 
@@ -55,8 +53,10 @@ def find_by_symbol(symbol):
 
     return None
 
-
 def find_by_hgnc_id(hgnc_id):
+    """
+    Loop through hgnc_id keys and find a match.
+    """
 
     hgnc_id = validate_search_query(hgnc_id)
 

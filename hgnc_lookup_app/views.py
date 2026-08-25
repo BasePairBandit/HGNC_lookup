@@ -8,6 +8,11 @@ from .services.gene_search import (
 )
 
 def search_gene(request):
+    """
+    Validate the user input.
+    Decide if HGNC_ID or gene symbol.
+    Make context result available for use in html. 
+    """
 
     query = request.GET.get("query", "")
 
