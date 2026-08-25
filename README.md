@@ -36,6 +36,9 @@ conda activate HGNC_lookup
 # Install application
 pip install -e .
 
+# Generate lightweight dataset (run from root)
+python -m HGNC_lookup.scripts.process_hgnc
+
 # Run application
 python manage.py runserver
 
@@ -57,9 +60,6 @@ pytest
 
 # Generate coverage report
 pytest --cov=. --cov-report=html
-
-# Generate lightweight dataset (run from root)
-python -m HGNC_lookup.scripts.process_hgnc
 
 # Project layout
 ├── data
