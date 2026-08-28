@@ -155,7 +155,7 @@ LOGGING = {
         "hgnc_lookup": {
             "level": "DEBUG",
             "handlers": ["console", "file"],
-            "propagate": False
+            "propagate": True
         },
     },
 
