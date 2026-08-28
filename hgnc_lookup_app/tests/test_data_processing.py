@@ -6,7 +6,7 @@ def test_data_file_exists():
     """
     Testing if the file exists
     """
-    assert DATA_FILE.exists
+    assert DATA_FILE.exists()
 
 def test_load_dataset():
     """

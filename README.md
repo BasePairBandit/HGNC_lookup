@@ -34,7 +34,7 @@ conda env create -f environment.yml
 conda activate HGNC_lookup
 
 # Install application
-pip install -e . #run from /HGNC_lookup
+pip install -e .
 
 # Generate lightweight dataset (run from root)
 python -m HGNC_lookup.scripts.process_hgnc #run from one dir up from /HGNC_lookup

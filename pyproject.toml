@@ -47,3 +47,11 @@ dependencies = {file = ["requirements.txt"]}
 where = ["."]
 include = ["hgnc_lookup*", "hgnc_lookup_app*"]
 exclude = ["data*"]
+
+# ==========================================================
+# Test setup
+# ==========================================================
+
+[tool.pytest]
+DJANGO_SETTINGS_MODULE = "hgnc_lookup.settings"
+python_files = ["test_*.py"]
