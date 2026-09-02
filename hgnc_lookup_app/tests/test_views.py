@@ -3,6 +3,11 @@ from django.urls import reverse
 
 
 def test_search_page_loads(client):
+    """
+    Tests that the search URL:
+    - returns HTTP 200
+    - Renders search template
+    """
     response = client.get(reverse("search"))
 
     assert response.status_code == 200
@@ -13,12 +18,15 @@ def test_search_page_loads(client):
 
 
 def test_valid_symbol_search(client):
+    """
+    Tests a valid gene symbol works
+    """
     response = client.get(
         reverse("search"),
         {"query": "APOE"},
     )
 
-    assert response.status_code, 200
+    assert response.status_code == 200
     assert response.context["gene"]["gene_symbol"]=="APOE"
     assert response.context["error"] is None
 
