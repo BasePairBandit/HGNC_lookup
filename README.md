@@ -15,7 +15,7 @@ User enters gene symbol/HGNC ID and the web app returns the following informatio
 # Data source
 
 Original data downloaded from : https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt.
-Date downloaded : 
+Date downloaded : 27-08-2026
 
 A lightweight dataset (see instructions below) is created to reflect the columns mentioned above and is used by the web application to provide the user with the information.
 
@@ -23,47 +23,81 @@ A lightweight dataset (see instructions below) is created to reflect the columns
 
 The application loads a .txt file into memory once during application startup and the lightweight data set is created from this and performs all gene searches against the lightweight dataset in-memory.
 
+## Download source dataset
+
+wget https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt
+
+Place the downloaded file in:
+
+data/hgnc_complete_set.txt
+
 # Installation
 
 The project uses a reproducible Conda environment to ensure consistent behaviour across systems.
 
-# Create environment
-conda env create -f environment.yml
+## Create environment
 
-# Activate environment
+```bash
+conda env create -f environment.yml
+```
+
+## Activate environment
+```bash
 conda activate HGNC_lookup
+```
 
 # Install application
+```bash
 pip install -e .
+```
 
-# Generate lightweight dataset (run from root)
-python -m HGNC_lookup.scripts.process_hgnc #run from one dir up from /HGNC_lookup
+# Generate lightweight dataset
+From the project root:
+```bash
+python -m HGNC_lookup.scripts.process_hgnc
+```
 
 # Run application
-python manage.py runserver #run from /HGNC_lookup
+Run the Django development server:
 
+```bash
+python manage.py runserver
+```
 # Stopping the application
 
 Stop the development server with:
 
-```text
+```bash
 Ctrl+C
 ```
 
 Deactivate the Conda environment when finished:
 
+```bash
 conda deactivate
+```
 ---
 
 # Run tests
+
+```bash
 pytest
+```
 
 # Generate coverage report
+
+```bash
 pytest --cov=. --cov-report=html
+```
+
+The HTML coverage report will be generated in:
+- htmlcov/index.html
+
+Open the file in a browser to review coverage.
 
 # Project layout
 ├── data
-│   ├── hgnc_complete_set.tsv
+│   ├── hgnc_complete_set.txt
 │   └── hgnc_lightweight_dataset.json
 ├── environment.yml
 ├── hgnc_lookup_app
@@ -86,7 +120,7 @@ pytest --cov=. --cov-report=html
 │   └── views.py
 ├── LICENSE
 ├── manage.py
-├── project
+├── hgnc_lookup
 │   ├── asgi.py
 │   ├── __init__.py
 │   ├── __pycache__
