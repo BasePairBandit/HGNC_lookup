@@ -144,7 +144,7 @@ Open the file in a browser to review coverage.
 
 # Logging
 
-Logging is configured centrally within:
+Logging is configured centrally within :
 
 hgnc_lookup/settings.py
 
