@@ -96,6 +96,8 @@ The HTML coverage report will be generated in:
 Open the file in a browser to review coverage.
 
 # Project layout
+```text
+.
 ├── data
 │   ├── hgnc_complete_set.txt
 │   └── hgnc_lightweight_dataset.json
@@ -123,9 +125,6 @@ Open the file in a browser to review coverage.
 ├── hgnc_lookup
 │   ├── asgi.py
 │   ├── __init__.py
-│   ├── __pycache__
-│   │   ├── __init__.cpython-312.pyc
-│   │   └── settings.cpython-312.pyc
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
@@ -141,6 +140,7 @@ Open the file in a browser to review coverage.
     └── hgnc_lookup_app
         ├── results.html
         └── search.html
+```
 
 # Logging
 
