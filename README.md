@@ -1,5 +1,4 @@
-[![codecov](https://codecov.io/gh/BasePairBandit/HGNC_lookup/graph/badge.svg)]
-(https://codecov.io/gh/BasePairBandit/HGNC_lookup)
+[![codecov](https://codecov.io/gh/BasePairBandit/HGNC_lookup/graph/badge.svg)](https://codecov.io/gh/BasePairBandit/HGNC_lookup)
 
 # HGNC_lookup
 HGNC_lookup is a simple Django web application that allows the user to find information about human genes using either the gene symbol or HGNC ID.
