@@ -1,0 +1,7 @@
+[run]
+omit =
+    manage.py
+    */migrations/*
+    */wsgi.py
+    */asgi.py
+    */logger.py
