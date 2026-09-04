@@ -16,7 +16,6 @@ def test_search_page_loads(client):
         for template in response.templates
     ]
 
-
 def test_valid_symbol_search(client):
     """
     Tests a valid gene symbol works
