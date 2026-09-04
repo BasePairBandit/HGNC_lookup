@@ -79,17 +79,17 @@ def build_gene_record(row: dict) -> dict:
                         # Main processing
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-def create_lightweight_dataset() -> list:
+def create_lightweight_dataset(input_file=INPUT_FILE) -> list:
     """
     Read the hgnc_complete_set.txt and create a lightweight 
     dataset using the helper functions above.
     """
 
-    logger.info("Reading HGNC data from %s", INPUT_FILE)
+    logger.info("Reading HGNC data from %s", input_file)
 
     dataset = []
 
-    with open(INPUT_FILE, "r", encoding="utf-8") as file:
+    with open(input_file, "r", encoding="utf-8") as file:
 
         reader = csv.DictReader(
             file,
@@ -109,13 +109,13 @@ def create_lightweight_dataset() -> list:
     return dataset
 
 
-def save_dataset(dataset: list[dict]) -> None:
+def save_dataset(dataset: list[dict], output_file=OUTPUT_FILE) -> None:
     """
     Write lightweight dataset to JSON.
     """
 
     with open(
-        OUTPUT_FILE,
+        output_file,
         "w",
         encoding="utf-8"
     ) as outfile:
@@ -128,7 +128,7 @@ def save_dataset(dataset: list[dict]) -> None:
 
     logger.info(
         "Saved lightweight dataset to %s",
-        OUTPUT_FILE
+        output_file
     )
 
 
