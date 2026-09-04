@@ -3,16 +3,25 @@ from pathlib import Path
 from scripts.process_hgnc import create_lightweight_dataset, save_dataset, build_gene_record
 
 def test_create_light_weight_dataset_not_empty():
+    """
+    Test that the dataset is not empty.
+    """
     dataset = create_lightweight_dataset()
 
     assert len(dataset) !=0 
 
 def test_create_light_weight_dataset_is_list():
+    """
+    Test that the dataset created is of type list.
+    """
     dataset = create_lightweight_dataset()
 
     assert type(dataset) == list
 
 def test_create_light_weight_dataset_has_correct_fields():
+    """
+    Test that the dataset has the expected fields.
+    """
     dataset = create_lightweight_dataset()
 
     expected_fields = {
@@ -29,6 +38,9 @@ def test_create_light_weight_dataset_has_correct_fields():
     assert set(dataset[0].keys()) == expected_fields
 
 def test_create_light_weight_dataset_has_correct_types():
+    """
+    Test that the expected fields contain data of the correct type.
+    """
     dataset = create_lightweight_dataset()
 
     dataset = dataset[0]
@@ -42,6 +54,9 @@ def test_create_light_weight_dataset_has_correct_types():
     assert isinstance(mane_select, list)
 
 def test_create_light_weight_dataset_has_known_genes():
+    """
+    Test that a known gene exisits and it has the correct hgnc_id.
+    """
     dataset = create_lightweight_dataset()
     found_gene = False
     found_hgnc_id = False
@@ -59,7 +74,15 @@ def test_create_light_weight_dataset_has_known_genes():
     assert found_hgnc_id
     assert found_gene
 
-def test_create_light_weight_dataset_correct_mane_select(): #This test is a bit fragile, if failing consistently, check mane_select in dataset. However leaving this here because it can potentially be a trigger for you to check the data structure / annotation sometime in the future.
+def test_create_light_weight_dataset_correct_mane_select(): 
+    """
+    Test that the mane_select is correct for a common gene.
+    
+    This test is intentionally a bit fragile. If failing consistently,
+    check mane_select in dataset. However leaving this here because 
+    it can potentially be a trigger for you to check the data structure
+    / annotation sometime in the future.
+    """
     dataset = create_lightweight_dataset()
     found_gene = False
     found_mane_select = False
@@ -77,7 +100,10 @@ def test_create_light_weight_dataset_correct_mane_select(): #This test is a bit 
     assert found_mane_select
     assert found_gene
 
-def test_create_light_weight_dataset_check_for_duplicate_hgnc_ids(): #This test is a bit fragile, if failing consistently, check mane_select in dataset. However leaving this here because it can potentially be a trigger for you to check the data structure / annotation sometime in the future.
+def test_create_light_weight_dataset_check_for_duplicate_hgnc_ids():
+    """
+    Test that there are no duplicate hgnc_id records.
+    """
     dataset = create_lightweight_dataset()
 
     seen = set()
@@ -92,6 +118,9 @@ def test_create_light_weight_dataset_check_for_duplicate_hgnc_ids(): #This test 
     assert not duplicates
 
 def test_create_light_weight_dataset_check_for_duplicate_gene_symbol():
+    """
+    Test that there are no duplicate gene_symbol records.
+    """
     dataset = create_lightweight_dataset()
 
     seen = set()
@@ -105,8 +134,10 @@ def test_create_light_weight_dataset_check_for_duplicate_gene_symbol():
             seen.add(gene_symbol)
     assert not duplicates
 
-
 def test_create_light_weight_dataset_check_for_empty_hgnc_ids(): 
+    """
+    Test that there are no records with empty hgnc_ids.
+    """
     dataset = create_lightweight_dataset()
 
     empty_hgnc_id = False
@@ -119,7 +150,9 @@ def test_create_light_weight_dataset_check_for_empty_hgnc_ids():
     assert not empty_hgnc_id
 
 def test_save_dataset_works():
-
+    """
+    Test that the lightweight file gets created.
+    """
     BASE_DIR = Path(__file__).resolve().parent.parent
 
     INPUT_FILE = BASE_DIR / "tests" / "test_files" / "test_hgnc_record.txt"
@@ -138,15 +171,26 @@ def test_save_dataset_works():
             OUTPUT_FILE.unlink()
 
 def test_build_gene_record():
+    """
+    Test that the json structue is as expected.
+    """
     row = {
         "hgnc_id": "HGNC:1",
         "symbol": "TEST",
         "name": "Test Gene",
-        "aliases": "A|B"
+        "previous_symbols": [],
+        "previous_names": [],
+        "aliases": "A|B",
+        "mane_select": "ENST0001|NM_0001",
+        "mane_plus_clinical": "",
     }
 
     record = build_gene_record(row)
 
     assert record["hgnc_id"] == "HGNC:1"
     assert record["gene_symbol"] == "TEST"
+    assert record["previous_symbols"] == []
+    assert record["previous_names"] == []
     assert record["aliases"] == ["A", "B"]
+    assert record["mane_select"] == ["ENST0001","NM_0001"]
+    assert record["mane_plus_clinical"] == []
