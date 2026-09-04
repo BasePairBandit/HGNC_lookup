@@ -50,7 +50,7 @@ def split_field(value: str) -> list:
 
 def build_gene_record(row: dict) -> dict:
     """
-    Build a lightweight gene dictionary by only extracting the fields specified in the assignment.
+    Build a lightweight json dictionary by only extracting the fields specified in the assignment.
     """
 
     return {
