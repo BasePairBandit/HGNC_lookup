@@ -23,15 +23,19 @@ A lightweight dataset (see instructions below) is created to reflect the columns
 
 # Project architecture
 
-The application loads a .txt file into memory once during application startup and the lightweight data set is created from this and performs all gene searches against the lightweight dataset in-memory.
+The application loads the .txt file into memory once during application startup and the lightweight data set is created from this and performs all gene searches against the lightweight dataset in-memory.
 
 ## Download source dataset
+
+If the user would like to use an up-to-date dataset instead of the one provided they can perform the following steps at any point.
 
 wget https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt
 
 Place the downloaded file in:
 
-data/hgnc_complete_set.txt
+- data/hgnc_complete_set.txt
+
+Note: the user would need to regenerate the lightweight dataset and restart the server.
 
 # Installation
 
@@ -54,9 +58,9 @@ pip install -e .
 ```
 
 # Generate lightweight dataset
-From the project root:
+
 ```bash
-python -m HGNC_lookup.scripts.process_hgnc
+python -m scripts.process_hgnc
 ```
 
 # Run application
