@@ -2,6 +2,10 @@ import json
 from pathlib import Path
 from scripts.process_hgnc import create_lightweight_dataset, save_dataset, build_gene_record
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                    # Testing create_lightweight_dataset()
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 def test_create_light_weight_dataset_not_empty():
     """
     Test that the dataset is not empty.
@@ -149,6 +153,10 @@ def test_create_light_weight_dataset_check_for_empty_hgnc_ids():
 
     assert not empty_hgnc_id
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                    # Testing save_dataset()
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 def test_save_dataset_works():
     """
     Test that the lightweight file gets created.
@@ -170,6 +178,10 @@ def test_save_dataset_works():
         if OUTPUT_FILE.exists():
             OUTPUT_FILE.unlink()
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                    # Testing build_gene_record
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 def test_build_gene_record():
     """
     Test that the json structue is as expected.
@@ -178,9 +190,9 @@ def test_build_gene_record():
         "hgnc_id": "HGNC:1",
         "symbol": "TEST",
         "name": "Test Gene",
-        "previous_symbols": [],
-        "previous_names": [],
-        "aliases": "A|B",
+        "prev_symbol": "",
+        "prev_name": "",
+        "alias_symbol": "A|B",
         "mane_select": "ENST0001|NM_0001",
         "mane_plus_clinical": "",
     }
