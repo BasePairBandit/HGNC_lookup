@@ -1,3 +1,9 @@
+/*
+Template based on a design from Colorlib:
+https://colorlib.com/wp/templates/
+
+Modified for the HGNC_lookup project.
+*/
 html {
   line-height: 1.15;
   /* 1 */
