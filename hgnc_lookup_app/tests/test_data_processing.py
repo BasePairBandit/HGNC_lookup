@@ -15,4 +15,4 @@ def test_load_dataset():
     result = load_dataset()
     assert result is not None
     assert isinstance(result, list)
-    assert len(result)>0
+    assert len(result) > 100
