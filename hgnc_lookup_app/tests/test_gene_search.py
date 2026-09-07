@@ -2,6 +2,9 @@ import pytest
 from hgnc_lookup_app.services.gene_search import find_by_symbol, find_by_hgnc_id, validate_search_query, UserInputError
 from hgnc_lookup_app.services.data_loader import load_dataset
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                    # Testing validation
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 def test_validate_search_query_normal_case():
     """
@@ -26,6 +29,11 @@ def test_validate_search_query_empty(caplog):
     with pytest.raises(UserInputError):
         validate_search_query("")
     assert "Empty user input" in caplog.text
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                    # Testing find_by_symbol()
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 
 def test_find_by_symbol_normal_case():
     """
@@ -71,13 +79,19 @@ def test_find_by_symbol_space():
     assert result is not None
     assert result["gene_symbol"] == "APOE"
 
-def test_find_by_symbol_not_found():
+def test_find_by_symbol_leading_space():
     """
-    Tesing that not real gene symbols return None.
+    Tesing that it can get rid of leading spaces and still find the gene.
     """
-    result = find_by_symbol("APO")
+    result = find_by_symbol(" APOE")
 
-    assert result is None
+    assert result is not None
+    assert result["gene_symbol"] == "APOE"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                    # Testing find_by_hgnc_id
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 
 def test_find_by_hgnc_id_normal_case():
     """
@@ -122,3 +136,12 @@ def test_find_by_hgnc_id_non_existent_id():
     result = find_by_hgnc_id("HGnC :000")
 
     assert result is None
+
+def test_find_by_hgnc_id_leading_space():
+    """
+    Tesing that it can get rid of leading spaces and still find the gene.
+    """
+    result = find_by_hgnc_id(" HGNC:613")
+
+    assert result is not None
+    assert result["hgnc_id"]=="HGNC:613"
