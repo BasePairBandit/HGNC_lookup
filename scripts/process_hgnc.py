@@ -59,13 +59,13 @@ def build_gene_record(row: dict) -> dict:
         "gene_name": row.get("name", ""),
 
         "previous_symbols":
-            split_field(row.get("previous_symbols", "")),
+            split_field(row.get("prev_symbol", "")),
 
         "previous_names":
-            split_field(row.get("previous_names", "")),
+            split_field(row.get("prev_name", "")),
 
         "aliases":
-            split_field(row.get("aliases", "")),
+            split_field(row.get("alias_symbol", "")),
 
         "mane_select":
             split_field(row.get("mane_select", "")),
@@ -73,7 +73,6 @@ def build_gene_record(row: dict) -> dict:
         "mane_plus_clinical": #Empty column when inspecting but included as assignment specified.
             split_field(row.get("mane_plus_clinical", ""))
     }
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
                         # Main processing
