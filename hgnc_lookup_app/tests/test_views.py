@@ -1,4 +1,3 @@
-
 from django.urls import reverse
 
 
@@ -83,10 +82,15 @@ def test_lowercase_hgnc_id_uses_hgnc_search(client):
         "hgnc_id": "HGNC:613",
         "gene_symbol": "APOE",
         "gene_name": "apolipoprotein E",
-        "previous_symbols": [],
-        "previous_names": [],
+        "previous_symbols": ["AD2"],
+        "previous_names": [
+            "Alzheimer disease 2 (APOE*E4-associated, late onset)"
+        ],
         "aliases": [],
-        "mane_select": ['ENST00000252486.9','NM_000041.4',],
+        "mane_select": [
+            "ENST00000252486.9",
+            "NM_000041.4",
+        ],
         "mane_plus_clinical": [],
     }
     response = client.get(
