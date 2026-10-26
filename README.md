@@ -101,6 +101,20 @@ The HTML coverage report will be generated in:
 
 Open the file in a browser to review coverage.
 
+## Running with Docker
+
+Build the image:
+
+docker build -t hgnc_lookup_app .
+
+Run the application:
+
+docker run --rm -p 8000:8000 gene-lookup-app
+
+Open the application in a web browser:
+
+http://localhost:8000
+
 # Project layout
 ```text
 .
