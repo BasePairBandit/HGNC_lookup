@@ -1,0 +1,26 @@
+name: HGNC_lookup_app
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t hgnc_lookup_app .
+
+      - name: Run application
+        run: |
+          docker run -d --name hgnc_lookup_app -p 8000:8000 hgnc_lookup_app
+
+      - name: Run pytest
+        run: |
+          docker exec hgnc_lookup_app pytest hgnc_lookup_app/tests/
